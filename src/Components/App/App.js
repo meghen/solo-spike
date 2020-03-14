@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './App.css';
+const Axios = require('axios');
 
 class App extends Component {
   componentDidMount(){
@@ -7,6 +8,14 @@ class App extends Component {
   }
   getMovies=()=>{
      console.log('hey');
+     Axios({
+       method: 'GET',
+       url: '/movie'
+     }).then((response) => {
+       console.log('response.data', response.data);
+     }).catch ((error) => {
+       console.log('error', error);
+     })
      
   }
   render(){
