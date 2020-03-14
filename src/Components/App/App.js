@@ -3,6 +3,9 @@ import './App.css';
 const Axios = require('axios');
 
 class App extends Component {
+  state = {
+    movie: ''
+  }
   componentDidMount(){
     this.getMovies();
   }
@@ -10,6 +13,9 @@ class App extends Component {
      console.log('hey');
      Axios.get('/movie').then((response) => {
        console.log('GET response', response);
+       this.setState({
+        movie: response
+       })
      }).catch ((error) => {
        console.log('client error', error);
      })
@@ -18,7 +24,7 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        <h1>Hi yall</h1>
+        {JSON.stringify(this.state.movie)}
       </div>
     );
   }

@@ -6,7 +6,7 @@ const Axios = require('axios')
 router.get('/', (req,res) =>{
     console.log('got get from client');
     
-    Axios.get(`https://api.themoviedb.org/3/movie/550?api_key=${process.env.TMDB_API_KEY}`)
+    Axios.get(`https://api.themoviedb.org/3/discover/movie?with_genres=27,53&api_key=${process.env.TMDB_API_KEY}`)
     .then((response) => {
         console.log('API response', response);
         res.send(response.data)
