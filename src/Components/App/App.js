@@ -8,13 +8,10 @@ class App extends Component {
   }
   getMovies=()=>{
      console.log('hey');
-     Axios({
-       method: 'GET',
-       url: '/movie'
-     }).then((response) => {
-       console.log('response.data', response.data);
+     Axios.get('/movie').then((response) => {
+       console.log('GET response', response);
      }).catch ((error) => {
-       console.log('error', error);
+       console.log('client error', error);
      })
      
   }
