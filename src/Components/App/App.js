@@ -4,7 +4,7 @@ const Axios = require('axios');
 
 class App extends Component {
   state = {
-    movie: ''
+    movie: []
   }
   componentDidMount(){
     this.getMovies();
@@ -12,9 +12,9 @@ class App extends Component {
   getMovies=()=>{
      console.log('hey');
      Axios.get('/movie').then((response) => {
-       console.log('GET response', response);
+       console.log('GET response', response.data.results);       
        this.setState({
-        movie: response
+        movie: response.data.results
        })
      }).catch ((error) => {
        console.log('client error', error);
@@ -24,7 +24,12 @@ class App extends Component {
   render(){
     return (
       <div className="App">
-        {JSON.stringify(this.state.movie)}
+        {/* {JSON.stringify(this.state.movie)} */}
+        {this.state.movie.map(movie => 
+            <div className="moviesList" key={movie.id}>
+              <div className="moviesListInner"><img src={`https://image.tmdb.org/t/p/w185/${movie.poster_path}`}/></div>
+              <div className="moviesListInner"><b>{movie.title}</b> <br></br>{movie.overview}</div>
+            </div>)}
       </div>
     );
   }
